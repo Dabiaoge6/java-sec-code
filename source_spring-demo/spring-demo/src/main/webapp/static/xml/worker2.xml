@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worker>
+<programmer id = "1">
+   <age>20</age>
+   <name>Soniya</name>
+   <email>Soniya@163.com</email>
+</programmer>
+<programmer id = "2">
+   <age>21</age>
+   <name>Start</name>
+   <email>Start@123.cn</email>
+</programmer>
+<programmer id = "3">
+   <age>22</age>
+   <name>Run</name>
+   <email>Run@234.cn</email>
+</programmer>
+</worker>

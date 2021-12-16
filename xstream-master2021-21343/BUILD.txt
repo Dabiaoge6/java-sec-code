@@ -1,0 +1,15 @@
+For Java 8 or higher build with Maven 3
+
+Before building:
+
+To build:
+
+mvn clean install
+
+Before deploying:
+
+copy settings-template.xml to ~/.m2/settings.xml adding your Sonatype OSSRH
+username and passwords and also your GPG key and password.
+
+To deploy (optionally adding sources and javadoc jars):
+mvn deploy

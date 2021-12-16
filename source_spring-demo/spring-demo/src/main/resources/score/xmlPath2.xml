@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<employees>
+  <employee id="AS789" firstname="San" lastname="Zhang" annualsalary="70000"/>
+  <employee id="AS719" firstname="Si" lastname="Li" annualsalary="90000"/>
+  <employee id="AS219" firstname="Wu" lastname="Wang" annualsalary="65000"/>
+</employees>

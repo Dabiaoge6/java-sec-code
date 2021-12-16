@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>userRegister</title>
+</head>
+<body>
+<h1 align="center">UserRegister</h1>
+<div align="center">
+    <form th:action="@{/register.do}" method="post">
+        <table>
+            <tr>
+                <input name="username" placeholder=""/><br>
+                <div id="udiv" style="color: crimson"></div>
+
+&emsp;<input name="password" placeholder=""/><br>
+                <div id="pdiv" style="color: crimson"></div>
+
+<input name="tel" placeholder=""/><br>
+                <div id="tdiv" style="color: crimson"></div>
+<select name="role">
+    <option value="ADMIN,USER"></option>
+    <option value="USER"></option>
+</select>
+<input type="submit" value=""/>
+            </tr>
+        </table>
+
+    </form>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    //
+    $("input[name='username']").blur(function () { //
+        var namestr = $(this).val();
+        var regstr = /^[a-z0-9_-]{3,6}$/;
+        if (!regstr.test(namestr)) {
+            $("#udiv").show().text("");
+            $("#udiv").fadeOut(3000);
+            return false;
+        }
+        return true;
+    });
+//
+$("input[name='password']").blur(function () { //
+    var namestr = $(this).val();
+    var regstr = /^[a-z0-9_-]{3,6}$/;
+    if (!regstr.test(namestr)) {
+        $("#pdiv").show().text("");
+        $("#pdiv").fadeOut(3000);
+        return false;
+    }
+    return true;
+});
+
+//
+$("input[name='tel']").blur(function () { //
+    var telstr = $(this).val();
+    var regstr = /1\d{10}/;
+    if (!regstr.test(telstr)) {
+        $("#tdiv").show().text("");
+        $("#tdiv").fadeOut(3000);
+        return false;
+    }
+    return true;
+});
+
+</script>
+</body>
+</html>

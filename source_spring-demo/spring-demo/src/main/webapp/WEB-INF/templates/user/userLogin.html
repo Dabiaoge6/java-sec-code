@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>userLogin</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/vercode.css}">
+</head>
+<body>
+<h1>UserLogin</h1>
+<div>
+    <div th:if="${param.error}">
+        Invalid username and password.
+    </div>
+    <div th:if="${param.logout}">
+        You have been logged out.
+    </div>
+
+    <form id="loginform" method="post">
+        <div><label>用户名：<input name="username" id="name" placeholder="请输入用户名"/></label></div>
+        <div><label>密码：<input name="password" id="pwd" placeholder="请输入密码"/></label></div>
+        <div><label><input type="text" name="verification" id="verification" class="form-control" placeholder="请输入验证码">
+            <img id="imgVerify" src="" onclick="getVerify();"
+                 alt="点击更换验证码"/><a href="#" onclick="getVerify();" rel="nofollow">看不清，换一张</a></label></div>
+        <input id="sub-btn" type="submit"  value="提   交"/><!--onclick="checkLogin()"-->
+    </form>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/vercode.js}" ></script>
+<script type="text/javascript">
+
+    /*     $('#m').codeVerify({
+             type : 1,
+             width : '120px',
+             height : '40px',
+             fontSize : '30px',
+             codeLength : 4,
+             btnId : 'check-btn',
+             ready : function() {
+             },
+             success : function() {
+                 alert('验证成功！');
+                 checkLogin();
+             },
+             error : function() {
+                 alert('验证码错误！');
+             }
+         });*/
+
+</script>
+<script type="text/javascript">
+
+var curWwwPath=window.document.location.href;
+var pathName=window.document.location.pathname;
+var pos=curWwwPath.indexOf(pathName);
+var localhostPaht=curWwwPath.substring(0,pos);
+var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+var path = localhostPaht + projectName
+
+	$('#sub-btn').click(function() {
+	//向后台发送处理数据
+    $.ajax({
+        type: "POST", //用POST方式传输
+        dataType: "json", //数据格式:JSON
+        url: path + '/userLogin', //目标地址
+        data: $('#loginform').serialize(),
+        async: false,
+        success: function (msg){
+        	if(msg.msg == "登录成功") {
+        		window.location.href = path + "/home/hello?role=" + msg.role;
+        	} else {
+        		alert(msg.msg);
+        	}
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+        	alert('用户登录请求失败！');
+        }
+    });
+	return false;
+	});
+
+
+
+    $(document.body).ready(function () {
+        /*       var token = $("meta[name='_csrf']").attr("content");
+               var header = $("meta[name='_csrf_header']").attr("content");
+               $(document).ajaxSend(function (e, xhr, options) {
+                   xhr.setRequestHeader(header, token);
+               });*/
+        //首次获取验证码
+        // $("#imgVerify").attr("src", "../getVerifyCode.do?" + Math.random());
+        var curWwwPath=window.document.location.href;
+        var pathName=window.document.location.pathname;
+        var pos=curWwwPath.indexOf(pathName);
+        var localhostPaht=curWwwPath.substring(0,pos);
+        var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+        var path = localhostPaht + projectName
+        // alert(localhostPaht + projectName);
+        var src1 = document.getElementById('imgVerify');
+        // src1.src = "../getVerifyCode.do?" + Math.random();
+        src1.src = path + "/getVerifyCode.do?" + Math.random();
+        $("#imgVerify").attr("src", path + "/getVerifyCode.do?" + Math.random());
+    });
+
+    //获取验证码
+    function getVerify() {
+        var curWwwPath=window.document.location.href;
+        var pathName=window.document.location.pathname;
+        var pos=curWwwPath.indexOf(pathName);
+        var localhostPaht=curWwwPath.substring(0,pos);
+        var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+        var path = localhostPaht + projectName
+        // alert(localhostPaht + projectName);
+        var src1 = document.getElementById('imgVerify');
+        // src1.src = "../getVerifyCode.do?" + Math.random();
+        src1.src = path + "/getVerifyCode.do?" + Math.random();
+    }
+
+</script>
+
+<script type="text/javascript">
+    function checkCode() {
+        var checkCode = $("#verification").val().toLowerCase();
+        $.post("/checkCode.do", {'checkCode': checkCode}, function (result) {
+            if (result.success == "true") {
+                $("#loginform").submit();
+            } else {
+                alert(result.errorInfo);
+            }
+        }, "json");
+    }
+</script>
+<script type="text/javascript">
+    function checkLogin() {
+        var username = $("#name").val();
+        var password = $("#pwd").val();
+        $.post("/loginCheck.do", {'username': username, 'password': password},
+            function (result) {
+                if (result.success == "true") {
+                    alert(result.msg);
+                    $("#loginform").submit();
+                } else {
+                    alert(result.msg);
+                }
+            }, "json");
+    }
+</script>
+</body>
+</html>

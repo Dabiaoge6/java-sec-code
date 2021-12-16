@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <!-- 原本配置的时候会写classpath:property/mongodb.properties，但是因为如果想加载property文件夹下其他文件，比如jdbc.properties的话，这个context就可以改成如下形式，不指定具体文件 -->
+  <context:property-placeholder location="classpath:mongodb.properties"  />
+
+  <!--username="${mongo.username}"-->
+  <!--password="${database.password}"-->
+  <mongo:db-factory id="mongoDbFactory"
+    host="${mongo.host}"
+    port="${mongo.port}"
+    dbname="${mongo.dbname}"
+  />
+  <mongo:repositories base-package="cn.seczone.mongdb.demo.dao" />
+
+  <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+    <constructor-arg name="mongoDbFactory" ref="mongoDbFactory"/>
+  </bean>
+</beans>

@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vulhunterSuite version="1.2">
+    <vulhunterTest URL="/spring-demo/cacheControl/cacheControl.do">
+        <payload value="cacheControl"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/cachecontrol/setcache.jsp">
+        <payload value="cacheControl"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/cachecontrol/nocache.jsp">
+        <payload value="cacheControl"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/clickControl/clickjacking.do">
+        <payload value="clickjacking"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/clickControl/clickjacking_DENY.do">
+        <payload value="clickjacking"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/clickControl/clickjacking_SAM.do">
+        <payload value="clickjacking"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/clickControl/clickjacking_ALLOW.do">
+        <payload value="clickjacking"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/clickcontrol/clickjacking_Error.do">
+        <payload value="clickjacking"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/clickcontrol/noclickjacking.jsp">
+        <payload value="clickjacking"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/clickcontrol/setclickjacking.jsp">
+        <payload value="clickjacking"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/cmdInjection/cmdInjection1.do">
+        <getparam name="cmd" value="calc"/>
+        <payload value="calc"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/cmdInjection/cmdInjection2.do">
+        <getparam name="cmd" value="cme.exe"/>
+        <getparam name="cmd" value="/c"/>
+        <getparam name="cmd" value="dir"/>
+        <payload value="cme.exe"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/cmdInjection/cmdInjection3.do">
+        <getparam name="cmd" value="cme.exe"/>
+        <getparam name="cmd" value="/c"/>
+        <getparam name="cmd" value="dir"/>
+        <payload value="cme.exe"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/cmdInjection/cmdInjection4.do">
+        <getparam name="cmd" value="cme.exe"/>
+        <getparam name="cmd" value="/c"/>
+        <getparam name="cmd" value="dir"/>
+        <payload value="cme.exe"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/cmdInjection/cmdInjection5.do">
+        <getparam name="cmd" value="mspaint"/>
+        <payload value="mspaint"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/cmdInjection/cmdInjection6.do">
+        <getparam name="cmd" value="cme.exe"/>
+        <getparam name="cmd" value="/c"/>
+        <getparam name="cmd" value="dir"/>
+        <payload value="cme.exe"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/cmdInjection/cmdInjection7.do">
+        <getparam name="cmd" value="cme.exe"/>
+        <getparam name="cmd" value="/c"/>
+        <getparam name="cmd" value="dir"/>
+        <payload value="cme.exe"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/cmdInjection/cmdInjection8.do">
+        <getparam name="cmd" value="cme.exe"/>
+        <getparam name="cmd" value="/c"/>
+        <getparam name="cmd" value="dir"/>
+        <payload value="cme.exe"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/contentPolicy/csp.do">
+        <payload value="csp"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/contentPolicy/cspMissing.do">
+        <payload value="csp"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/contentPolicy/cspResponseMissing.do">
+        <payload value="csp"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/contentPolicy/cspResponse.do">
+        <payload value="csp"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/cookiehttp/httpOnly_false.do">
+        <payload value="cookieHttpOnly"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/cookieSecure/secure_true.do">
+        <payload value="cookieSecure"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/cookieSecure/secure_false.do">
+        <payload value="cookieSecure"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/cipher/cryptoBadCipher1.do">
+        <formparam name="transformation" value="DES/CBC/NoPadding"/>
+        <payload value="cryptoBadCipher"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/cipher/cryptoBadCipher2.do">
+        <formparam name="transformation" value="DES/CBC/NoPadding"/>
+        <payload value="cryptoBadCipher"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/cipher/cryptoBadCipher3.do">
+        <formparam name="transformation" value="DES/CBC/NoPadding"/>
+        <payload value="cryptoBadCipher"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/mac/method1.do">
+        <formparam name="hashName" value="SHA-1"/>
+        <payload value="cryptoBadCipher"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/mac/method2.do">
+        <formparam name="hashName" value="MD5"/>
+        <payload value="cryptoBadCipher"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/mac/method3.do">
+        <formparam name="hashName" value="SHA-1"/>
+        <payload value="cryptoBadCipher"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/csrf/fileOutputStream.do">
+        <formparam name="param" value="test-csrf"/>
+        <payload value="test-csrf"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/csrf/printWriter.do">
+        <formparam name="param" value="test-csrf"/>
+        <payload value="test-csrf"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/csrf/insert.do">
+        <formparam name="name" value="csrf"/>
+        <formparam name="pwd" value="123"/>
+        <formparam name="age" value="12"/>
+        <payload value="csrf"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/csrf/update.do">
+        <formparam name="name_update" value="csrf"/>
+        <formparam name="pwd_update" value="123"/>
+        <formparam name="newpwd" value="1234"/>
+        <formparam name="confirmpwd" value="1234"/>
+        <payload value="csrf"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/csrf/delete.do">
+        <formparam name="username" value="csrf"/>
+        <payload value="csrf"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/elinjection/jstl_el_post.do">
+        <formparam name="message" value="${applicationScope}"/>
+        <payload value="elInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/elinjection/jstl_el.jsp">
+        <getparam name="message" value="%24%7bapplicationScope%7d"/>
+        <payload value="elInjection"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/hardkey/hardkey.do">
+        <payload value="hardkey"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/hardkey/secretkey.do">
+        <payload value="hardkey"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/hardkey/no_encryption.do">
+        <payload value="hardkey"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/hardkey/testencryption.do">
+        <payload value="hardkey"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/hardpwd/hardpassword.do">
+        <payload value="hardpwd"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/hardpwd/encodepassword.do">
+        <payload value="hardpwd"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/hardpwd/shortpassword.do">
+        <payload value="hardpwd"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/headerInjection/headerInjection1.do">
+        <getparam name="testurl" value="test"/>
+        <payload value="headerInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/headerInjection/headerInjection2.do">
+        <getparam name="testurl" value="test"/>
+        <payload value="headerInjection"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/hsts/hsts.do">
+        <payload value="hsts"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/hsts/maxage_null.do">
+        <payload value="hsts"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/hsts/maxage1.do">
+        <payload value="hsts"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/insecureSocket/startServer.do">
+        <payload value="insecureSocket"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/insecureSocket/startClient1.do">
+        <getparam name="message" value="hello"/>
+        <payload value="insecureSocket"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/isit/isit1.do">
+        <getparam name="password" value="hujj@seczone.cn"/>
+        <payload value="isit"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/isit/isit2.do">
+        <getparam name="account" value="8792749207414"/>
+        <payload value="isit"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/isit/isit3.do">
+        <getparam name="mobile" value="18736529067"/>
+        <payload value="isit"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/isit/isit4.do">
+        <getparam name="name" value="start"/>
+        <payload value="isit"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/isit/isit1_post.do">
+        <formparam name="password" value="test123!"/>
+        <payload value="isit"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/isit/isit2_post.do">
+        <formparam name="password" value="test123!"/>
+        <payload value="isit"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/isit/isit3_post.do">
+        <formparam name="password" value="test123!"/>
+        <payload value="isit"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/isit/isit4_post.do">
+        <formparam name="password" value="test123!"/>
+        <payload value="isit"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/isit/isit1_header.do">
+        <header name="password" value="test123!"/>
+        <payload value="isit"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/isit/isit2_header.do">
+        <header name="password" value="test123!"/>
+        <payload value="isit"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/isit/isit3_header.do">
+        <header name="password" value="test123!"/>
+        <payload value="isit"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/isit/isit4_header.do">
+        <header name="password" value="test123!"/>
+        <payload value="isit"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/ldapinjection/ldap1.do">
+        <getparam name="filterExpr" value="(objectClass=*)"/>
+        <payload value="ldapInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/ldapinjection/ldap2.do">
+        <getparam name="filterExpr" value="(cn=*),(objectClass=*),(ou=*)"/>
+        <payload value="ldapInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/ldapinjection/ldap3.do">
+        <getparam name="filterExpr" value="(objectClass=*)"/>
+        <payload value="ldapInjection"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/logInjection/logStr.do">
+        <getparam name="msg" value="test-loginjection"/>
+        <payload value="logInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/logInjection/logThrow.do">
+        <getparam name="msg" value="test-loginjection"/>
+        <payload value="logInjection"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/pathtraversal/upload.do">
+        <formparam name="file" value="d:/test/csrf.xml"/>
+        <payload value="pathtraversal"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/pathtraversal/fileInitString.do">
+        <getparam name="path" value="D:gongju"/>
+        <payload value="pathtraversal"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/pathtraversal/fileInitString2.do">
+        <getparam name="path1" value="D:"/>
+        <getparam name="path2" value="gongju"/>
+        <payload value="pathtraversal"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/pathtraversal/fileInitStringAndFile.do">
+        <getparam name="path1" value="D:"/>
+        <getparam name="path2" value="gongju"/>
+        <payload value="pathtraversal"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/pathtraversal/fileInitUri.do">
+        <getparam name="path" value="file:///D:gongju"/>
+        <payload value="pathtraversal"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/redirect/sendRedirect1.do">
+        <getparam name="location" value="index.jsp"/>
+        <payload value="redirect"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/redirect/redirect.do">
+        <getparam name="location" value="index.jsp"/>
+        <payload value="redirect"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/redirect/temporaryRedirect.do">
+        <getparam name="testuri" value="index.jsp"/>
+        <payload value="redirect"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/redirect/sendRedirect.do">
+        <getparam name="location" value="index.jsp"/>
+        <payload value="redirect"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/redirect/forward1.do">
+        <getparam name="name" value="index.jsp"/>
+        <payload value="redirect"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/redirect/forward.jsp">
+        <payload value="redirect"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/reflectedXss/writeInternal.do">
+        <getparam name="username" value="test-username"/>
+        <payload value="reflectedXss"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/reflectedXss/jspWriterTest.do">
+        <getparam name="username" value="test-username"/>
+        <getparam name="pwd" value="test-pwd"/>
+        <getparam name="encodingString" value="tag-fields"/>
+        <payload value="reflectedXss"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/reflectedXss/servletOutputStreamTest.do">
+        <getparam name="testString" value="test-String"/>
+        <payload value="reflectedXss"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/reflectedXss/printWriterTest-format.do">
+        <getparam name="testString" value="test-fields"/>
+        <payload value="reflectedXss"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/reflectedXss/printWriterTest-print.do">
+        <getparam name="testString" value="test-fields"/>
+        <payload value="reflectedXss"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/reflectedXss/printWriterTest-printf.do">
+        <getparam name="testString" value="test-fields"/>
+        <payload value="reflectedXss"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/reflectedXss/printWriterTest-println.do">
+        <getparam name="testString" value="test-fields"/>
+        <payload value="reflectedXss"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/reflectedXss/printWriterTest-write.do">
+        <getparam name="testString" value="test-fields"/>
+        <payload value="reflectedXss"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/reflectedXss/writeRaw.do">
+        <getparam name="testString" value="test-fields"/>
+        <payload value="reflectedXss"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/reflectedXss/HtmlResponseWriter.do">
+        <getparam name="testString" value="test-fields"/>
+        <payload value="reflectedXss"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/sensitivelog/traceStr4.do">
+        <getparam name="myInfo" value="org.slf4j.Logger.trace"/>
+        <payload value="sensitivelog"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sensitivelog/traceStr5.do">
+        <getparam name="myInfo" value="org.slf4j.Logger.trace"/>
+        <payload value="sensitivelog"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sensitivelog/warnStr2.do">
+        <getparam name="myInfo" value="org.slf4j.Logger.warn"/>
+        <payload value="sensitivelog"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sensitivelog/debugStr2.do">
+        <getparam name="myInfo" value="org.slf4j.Logger.debug"/>
+        <payload value="sensitivelog"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sensitivelog/errorStr1.do">
+        <getparam name="myInfo" value="org.slf4j.Logger.error"/>
+        <payload value="sensitivelog"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sensitivelog/infoStr1.do">
+        <getparam name="myInfo" value="org.slf4j.Logger.info"/>
+        <payload value="sensitivelog"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sensitivelog/testLogp1.do">
+        <getparam name="myInfo" value="java.util.logging.Logger.logp"/>
+        <payload value="sensitivelog"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/sessionRewriting/login.do">
+        <formparam name="user" value="admin"/>
+        <formparam name="pwd" value="password"/>
+        <payload value="admin"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/sqlInjection/statementAddBatch.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sqlInjection/statementExecute-sql.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sqlInjection/statementExecute-sql-int.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sqlInjection/statementExecute-sql-intArr.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sqlInjection/statementExecute-sql-StringArr.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sqlInjection/statementExecuteQuery.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sqlInjection/statementExecuteUpdate-sql.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sqlInjection/statementExecuteUpdate-sql-int.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sqlInjection/statementExecuteUpdate-sql-intArr.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sqlInjection/statementExecuteUpdate-sql-StringArr.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sqlInjection/connectionPrepareCall.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sqlInjection/connectionPrepareCall-int2.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sqlInjection/connectionPrepareCall-int3.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sqlInjection/connectionPrepareStatement.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sqlInjection/connectionPrepareStatement-int.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sqlInjection/connectionPrepareStatement-intArr.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sqlInjection/connectionPrepareStatement-int2.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sqlInjection/connectionPrepareStatement-int3.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sqlInjection/connectionPrepareStatement-StringArr.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sqlInjection/createNativeQuery.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sqlInjection/createNativeQuery-String.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/sqlInjection/createNativeQuery-Class.do">
+        <formparam name="username" value="test"/>
+        <formparam name="pwd" value="test password"/>
+        <payload value="sqlInjection"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/ssrf/openConnection.do">
+        <formparam name="testURL" value="https://www.baidu.com"/>
+        <payload value="ssrf"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/ssrf/openConnectionProxy.do">
+        <formparam name="testURL" value="https://www.baidu.com"/>
+        <payload value="ssrf"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/ssrf/setURI.do">
+        <formparam name="testURL" value="https://www.baidu.com"/>
+        <payload value="ssrf"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/strackTrace/exception.do">
+        <payload value="strackTrace"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/trustboundary/tbv1.do">
+        <getparam name="id" value="123aEsQd45"/>
+        <payload value="trustboundary"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/trustboundary/tbv2.do">
+        <getparam name="id" value="123aEsQd45"/>
+        <payload value="trustboundary"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/trustboundary/tbv5.do">
+        <getparam name="id" value="123aEsQd45"/>
+        <payload value="trustboundary"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/untrustedDeserialization/XStream/fromXML_Str.do">
+        <formparam name="xmlString" value="&lt;?xml version=&apos;1.0&apos; encoding=&apos;utf-8&apos;?&gt;&lt;user&gt;&lt;name&gt;test-untrustedDeserial&lt;/name&gt;&lt;mobile&gt;18239439283&lt;/mobile&gt;&lt;/user&gt;"/>
+        <payload value="untrustedDeserialization"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/untrustedDeserialization/XStream/fromXML_Rea.do">
+        <formparam name="xmlString" value="&lt;?xml version=&apos;1.0&apos; encoding=&apos;utf-8&apos;?&gt;&lt;user&gt;&lt;name&gt;test-untrustedDeserial&lt;/name&gt;&lt;mobile&gt;18239439283&lt;/mobile&gt;&lt;/user&gt;"/>
+        <payload value="untrustedDeserialization"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/untrustedDeserialization/XStream/fromXML_Inp.do">
+        <formparam name="xmlString" value="&lt;?xml version=&apos;1.0&apos; encoding=&apos;utf-8&apos;?&gt;&lt;user&gt;&lt;name&gt;test-untrustedDeserial&lt;/name&gt;&lt;mobile&gt;18239439283&lt;/mobile&gt;&lt;/user&gt;"/>
+        <payload value="untrustedDeserialization"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/untrustedDeserialization/XStream/fromXML_URL.do">
+        <formparam name="xmlString" value="/static/xml/user.xml"/>
+        <payload value="untrustedDeserialization"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/untrustedDeserialization/XStream/fromXML_URLOb.do">
+        <formparam name="xmlString" value="/static/xml/user.xml"/>
+        <payload value="untrustedDeserialization"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/untrustedDeserialization/Kryo/readObject_InpClass.do">
+        <formparam name="xmlString" value="test-untrustedDeserial"/>
+        <payload value="untrustedDeserialization"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/untrustedDeserialization/Kryo/readObjectOrNull_InpClass.do">
+        <formparam name="xmlString" value="test-untrustedDeserial"/>
+        <payload value="untrustedDeserialization"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/untrustedDeserialization/Kryo/readClassAndObject_Inp.do">
+        <formparam name="xmlString" value="test-untrustedDeserial"/>
+        <payload value="untrustedDeserialization"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/weakRandom/nextInt.do">
+        <payload value="weakRandom"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/weakRandom/nextBoolean.do">
+        <payload value="weakRandom"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/weakRandom/nextBytes.do">
+        <payload value="weakRandom"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/weakRandom/nextDouble.do">
+        <payload value="weakRandom"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/weakRandom/nextFloat.do">
+        <payload value="weakRandom"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/weakRandom/nextGaussian.do">
+        <payload value="weakRandom"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/weakRandom/nextInt1.do">
+        <payload value="weakRandom"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/weakRandom/nextLong.do">
+        <payload value="weakRandom"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/weakRandom/ConcurrentHashMap.do">
+        <payload value="weakRandom"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/xpathInjection/xpathInjection1.do">
+        <getparam name="xpath" value="//book[author='Neal Stephenson']/title/text()"/>
+        <payload value="xpathInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xpathInjection/xpathInjection2.do">
+        <getparam name="xpath" value="/resp/status"/>
+        <payload value="xpathInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xpathInjection/xpathInjection3.do">
+        <getparam name="xpath" value="/resp/status"/>
+        <payload value="xpathInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xpathInjection/xpathInjection4.do">
+        <getparam name="xpath" value="//book[author='Neal Stephenson']/title/text()"/>
+        <payload value="xpathInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xpathInjection/xpathInjection5.do">
+        <getparam name="xpath" value="//book[author='Neal Stephenson']/title/text()"/>
+        <payload value="xpathInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xpathInjection/xpathInjection6.do">
+        <getparam name="xpath" value="/resp/status"/>
+        <payload value="xpathInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xpathInjection/xpathInjection7.do">
+        <getparam name="xpath" value="/resp/status"/>
+        <payload value="xpathInjection"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xpathInjection/xpathInjection8.do">
+        <getparam name="xpath" value="/resp/status"/>
+        <payload value="xpathInjection"/>
+    </vulhunterTest>
+
+    <vulhunterTest URL="/spring-demo/xxe/xomFile.do">
+        <getparam name="xmlName" value="test.xml"/>
+        <payload value="xxe"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xxe/xomInputStream.do">
+        <getparam name="xmlName" value="test.xml"/>
+        <payload value="xxe"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xxe/dbfReader.do">
+        <getparam name="xmlName" value="worker.xml"/>
+        <payload value="xxe"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xxe/dbfInputStream.do">
+        <getparam name="xmlName" value="worker.xml"/>
+        <payload value="xxe"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xxe/dbfSource.do">
+        <getparam name="xmlName" value="worker.xml"/>
+        <payload value="xxe"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xxe/dbfSourceClass.do">
+        <getparam name="xmlName" value="worker.xml"/>
+        <payload value="xxe"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xxe/dbfInputSource.do">
+        <getparam name="xmlName" value="worker.xml"/>
+        <payload value="xxe"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xxe/dbFile.do">
+        <getparam name="xmlName" value="applicant.xml"/>
+        <payload value="xxe"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xxe/dbInputStream.do">
+        <getparam name="xmlName" value="applicant.xml"/>
+        <payload value="xxe"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xxe/istreamDH.do">
+        <getparam name="xmlName" value="applicant.xml"/>
+        <payload value="xxe"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xxe/istreamHBase.do">
+        <getparam name="xmlName" value="applicant.xml"/>
+        <payload value="xxe"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xxe/dbString.do">
+        <formparam name="xmlPath" value="/static/xml/applicant.xml"/>
+        <payload value="xxe"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xxe/dbfXmlReader.do">
+        <formparam name="xmlString"
+                   value="&lt;?xml version=&apos;1.0&apos; encoding=&apos;utf-8&apos;?&gt;&lt;applicant&gt;&lt;age&gt;10&lt;/age&gt;&lt;name&gt;test&lt;/name&gt;&lt;mobile&gt;1008609&lt;/mobile&gt;&lt;email&gt;test@qq.com&lt;/email&gt;&lt;address&gt;testaddress&lt;/address&gt;&lt;/applicant&gt;"/>
+        <payload value="xxe"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xxe/isourceDH.do">
+        <formparam name="xmlString" value="&lt;?xml version=&apos;1.0&apos; encoding=&apos;utf-8&apos;?&gt;&lt;applicant&gt;&lt;age&gt;10&lt;/age&gt;&lt;name&gt;test&lt;/name&gt;&lt;mobile&gt;1008609&lt;/mobile&gt;&lt;email&gt;test@qq.com&lt;/email&gt;&lt;address&gt;testaddress&lt;/address&gt;&lt;/applicant&gt;"/>
+        <payload value="xxe"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xxe/isourceHBase.do">
+        <formparam name="xmlString" value="&lt;?xml version=&apos;1.0&apos; encoding=&apos;utf-8&apos;?&gt;&lt;applicant&gt;&lt;age&gt;10&lt;/age&gt;&lt;name&gt;test&lt;/name&gt;&lt;mobile&gt;1008609&lt;/mobile&gt;&lt;email&gt;test@qq.com&lt;/email&gt;&lt;address&gt;testaddress&lt;/address&gt;&lt;/applicant&gt;"/>
+        <payload value="xxe"/>
+    </vulhunterTest>
+    <vulhunterTest URL="/spring-demo/xxe/xmlReader.do">
+        <formparam name="xmlString" value="&lt;?xml version=&apos;1.0&apos; encoding=&apos;utf-8&apos;?&gt;&lt;applicant&gt;&lt;age&gt;10&lt;/age&gt;&lt;name&gt;test&lt;/name&gt;&lt;mobile&gt;1008609&lt;/mobile&gt;&lt;email&gt;test@qq.com&lt;/email&gt;&lt;address&gt;testaddress&lt;/address&gt;&lt;/applicant&gt;"/>
+        <payload value="xxe"/>
+    </vulhunterTest>
+
+</vulhunterSuite>

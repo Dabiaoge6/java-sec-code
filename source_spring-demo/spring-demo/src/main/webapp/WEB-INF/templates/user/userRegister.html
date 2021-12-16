@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>userRegister</title>
+</head>
+<body>
+<h1 align="center">UserRegister</h1>
+<div align="center">
+    <form id="userRegisterForm" method="post">
+        <table>
+            <tr>
+                用户名：<input name="name" placeholder="请输入用户名"/><br>
+                <div id="udiv" style="color: crimson"></div>
+
+                密&emsp;码：<input name="pwd" placeholder="请输入密码"/><br>
+                <div id="pdiv" style="color: crimson"></div>
+                角色：<select name="role">
+                <option value="ADMIN">管理员</option>
+                <option value="USER">用户</option>
+            </select>
+                <div>
+
+                 手机号：<input id="tel" name="tel" placeholder="请输入手机号码"/><br>
+                <div id="tdiv" style="color: crimson"></div>
+               验证码:<input id="checkCode"  type="text"  name="code">
+                <button id="code-btn">点击发送验证码</button>
+                </div>
+                <input id="sub-btn" name="sub-btn" type="submit" value="提	交">
+            </tr>
+        </table>
+
+    </form>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+var curWwwPath=window.document.location.href;
+var pathName=window.document.location.pathname;
+var pos=curWwwPath.indexOf(pathName);
+var localhostPaht=curWwwPath.substring(0,pos);
+var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+var path = localhostPaht + projectName
+	
+	$('#sub-btn').click(function() {
+		//向后台发送处理数据
+        $.ajax({
+            type: "POST", //用POST方式传输
+            dataType: "json", //数据格式:JSON
+            url: path + '/registerUser', //目标地址
+            data: $('#userRegisterForm').serialize(),
+            async: false,
+            success: function (msg){
+            	if(msg.message == "注册成功") {
+            		window.location.href = path + "/home/toLogin";
+            	} else {
+            		alert(msg.message);
+            	}
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+            	alert('注册用户请求失败！');
+            }
+        });
+		return false;
+	});
+
+    //校验用户名
+    $("input[name='username']").blur(function () { //失去焦点
+        var namestr = $(this).val();
+        var regstr = /^[a-z0-9_-]{3,6}$/;
+        if (!regstr.test(namestr)) {
+            $("#udiv").show().text("请输3到6位用户名！");
+            $("#udiv").fadeOut(3000);
+            return false;
+        }
+        return true;
+    });
+    //校验密码
+    $("input[name='password']").blur(function () { //失去焦点
+        var namestr = $(this).val();
+        var regstr = /^[a-z0-9_-]{3,6}$/;
+        if (!regstr.test(namestr)) {
+            $("#pdiv").show().text("请输3到6位密码！");
+            $("#pdiv").fadeOut(3000);
+            return false;
+        }
+        return true;
+    });
+
+    //校验手机号码
+    $("input[name='tel']").blur(function () { //失去焦点
+        var telstr = $(this).val();
+        var regstr = /1\d{10}/;
+        if (!regstr.test(telstr)) {
+            $("#tdiv").show().text("请输入正确的11位手机号格式！");
+            $("#tdiv").fadeOut(3000);
+            return false;
+        }
+        return true;
+    });
+
+    var code = ""; //接收验证码
+    $('#code-btn').click(function(){
+        var count = 5;
+        var tel=$("#tel").val();//手机号码
+        var reg_phone = /1\d{10}/;
+        if(!reg_phone.test(tel)){   //验证手机是否符合格式
+            alert("填写手机号");
+            return false;
+        }
+        //开始计时
+        $("#code-btn").attr('disabled','disabled');
+        $("#code-btn").html("倒计时" + count + "秒");
+        var timer = setInterval(function(){
+            count--;
+            $("#code-btn").html("倒计时" + count + "秒");
+            if (count==0) {
+                clearInterval(timer);
+                $("#code-btn").attr("disabled",false);//启用按钮
+                $("#code-btn").html("重新发送验证码");
+                code = "";//清除验证码。如果不清除，过时间后，输入收到的验证码依然有效
+            }
+        },1000);
+
+        //向后台发送处理数据
+        $.ajax({
+            type: "POST", //用POST方式传输
+            dataType: "text", //数据格式:JSON
+            url: path + '/getCode', //目标地址
+            data: "tel=" + tel + "&code=" + code,
+            error: function (XMLHttpRequest, textStatus, errorThrown) { },
+            success: function (msg){ }
+        });
+    });
+
+</script>
+</body>
+</html>

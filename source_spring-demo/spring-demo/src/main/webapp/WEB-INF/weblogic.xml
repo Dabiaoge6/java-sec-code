@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wls:weblogic-web-app xmlns:wls="http://xmlns.oracle.com/weblogic/weblogic-web-app"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.oracle.com/weblogic/weblogic-web-app http://xmlns.oracle.com/weblogic/weblogic-web-app/1.4/weblogic-web-app.xsd">
+  <wls:context-root>spring-demo</wls:context-root>
+  <wls:container-descriptor>
+    <servlet-reload-check-secs>-0</servlet-reload-check-secs>
+    <prefer-web-inf-classes>false</prefer-web-inf-classes>
+    <wls:index-directory-enabled>true</wls:index-directory-enabled>
+    <!--<wls:prefer-application-packages>
+        <wls:package-name>antlr.*</wls:package-name>
+        <wls:package-name>org.hibernate.*</wls:package-name>
+        <wls:package-name>javax.persistence.*</wls:package-name>
+        <wls:package-name>javax.persistence.spi.*</wls:package-name>
+        <wls:package-name>javax.persistence.criteria.*</wls:package-name>
+        <wls:package-name>javax.persistence.metamodel.*</wls:package-name>
+        <wls:package-name>org.hibernate.validator.*</wls:package-name>
+        <wls:package-name>javassist</wls:package-name>
+        <wls:package-name>org.apache.*</wls:package-name>
+    </wls:prefer-application-packages>-->
+    <wls:show-archived-real-path-enabled>true</wls:show-archived-real-path-enabled>
+  </wls:container-descriptor>
+</wls:weblogic-web-app>

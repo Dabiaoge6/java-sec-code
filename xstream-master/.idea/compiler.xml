@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="xstream-benchmark" />
+        <module name="xstream" />
+        <module name="xstream-hibernate" />
+        <module name="xstream-jmh" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="xstream" target="1.8" />
+      <module name="xstream-benchmark" target="1.8" />
+      <module name="xstream-distribution" target="1.5" />
+      <module name="xstream-hibernate" target="1.8" />
+      <module name="xstream-jmh" target="1.8" />
+      <module name="xstream-parent" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="xstream" options="-XDignore.symbol.file" />
+    </option>
+  </component>
+</project>

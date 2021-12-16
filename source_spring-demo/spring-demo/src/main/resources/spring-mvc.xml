@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:mvc="http://www.springframework.org/schema/mvc"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+  <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
+  <context:component-scan base-package="org.spring.demo.controller"/>
+  <context:component-scan base-package="org.rasp.controller"/>
+    <mvc:default-servlet-handler/>
+
+    <!-- <bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor">
+     </bean>-->
+
+
+ <bean id="templateResolver"
+        class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+    <property name="prefix" value="/WEB-INF/templates/"/>
+    <property name="suffix" value=".html"/>
+    <property name="characterEncoding" value="UTF-8"/>
+    <!-- HTML is the default value, added here for the sake of clarity.          -->
+    <property name="templateMode" value="HTML5"/>
+    <!-- Template cache is true by default. Set to false if you want             -->
+    <!-- templates to be automatically updated when modified.                    -->
+    <!--这个开发配置为false，避免改了模板还要重启服务器-->
+    <property name="cacheable" value="false"/>
+  </bean>
+
+  <!-- SpringTemplateEngine automatically applies SpringStandardDialect and      -->
+  <!-- enables Spring's own MessageSource message resolution mechanisms.         -->
+  <bean id="templateEngine"
+        class="org.thymeleaf.spring4.SpringTemplateEngine">
+    <property name="templateResolver" ref="templateResolver"/>
+  </bean>
+  <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+    <property name="viewResolvers">
+      <list>
+        <!--jsp-->
+        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+          <property name="prefix" value="/"/>
+          <property name="suffix" value=".jsp"/>
+          <property name="order" value="2" />
+        </bean>
+        <!--thymeleaf-->
+        <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+          <property name="excludedViewNames" value="storexss/*,csrf/*" />
+          <property name="characterEncoding" value="UTF-8"/>
+          <property name="templateEngine" ref="templateEngine" />
+          <property name="order" value="1" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+
+
+  <mvc:annotation-driven validator="validator"/>
+  <bean id="validator"
+    class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+    <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+    <!--<property name="validationMessageSource" ref="messageSource"/>-->
+  </bean>
+
+  <!-- 校验错误信息配置文件 hibernate.validator.version 4.1.0版本才有此方法-->
+  <!--<bean id="messageSource"
+    class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+    &lt;!&ndash; 资源文件名  &ndash;&gt;
+    <property name="basename" value="validationMessages"/>
+    <property name="defaultEncoding" value="utf-8"/>
+    <property name="useCodeAsDefaultMessage" value="false"/>
+    <property name="cacheSeconds" value="60"/>
+  </bean>-->
+
+  <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
+  <bean id="mappingJacksonHttpMessageConverter"
+    class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+    <property name="supportedMediaTypes">
+      <list>
+        <value>text/html;charset=UTF-8</value>
+      </list>
+    </property>
+  </bean>
+
+  <bean id="myMessageConverter"
+    class="org.spring.demo.MyConverter.MyMessageConverter">
+    <property name="supportedMediaTypes">
+      <list>
+        <value>application/x-java-serialized-object;charset=UTF-8</value>
+      </list>
+    </property>
+  </bean>
+  <!-- 启动SpringMVC的注解功能，完成请求和注解POJO的映射 -->
+  <bean
+    class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+    <property name="messageConverters">
+      <list>
+        <ref bean="mappingJacksonHttpMessageConverter"/> <!-- JSON转换器 -->
+      </list>
+    </property>
+  </bean>
+  <!-- 定义跳转的文件的前后缀 ，视图模式配置 -->
+  <bean
+    class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <!-- 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->
+     <property name="prefix" value="/" />
+    <property name="suffix" value=".jsp"/>
+  </bean>
+
+  <!-- 自定义视图解析器:BeanNameViewResolver使用视图的名字解析视图 -->
+  <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+    <!--
+       设置该自定义视图解析器BeanNameViewResolver与
+       InternalResourceViewResolver视图解析器的优先级值，
+       InternalResourceViewResolver的order默认值为Integer的最大值，
+       BeanNameViewResolver以下设置order为100，order值越小， 视图解析器的优先级越高。
+       该配置文件中自定视图解析器BeanNameViewResolver的优先级高于
+       InternalResourceViewResolver，每次先使用BeanNameViewResolver解析视图，
+       如果实现不了需求， 自动调用InternalResourceViewResolver解析视图。
+    -->
+    <property name="order">
+      <value>100</value>
+    </property>
+  </bean>
+
+  <!-- 配置文件上传，如果没有使用文件上传可以不用配置，当然如果不配，那么配置文件中也不必引入上传组件包 -->
+  <!--通过io流实现上传文件时，需要注释该配置，否则会导致request.getInputStream为空-->
+<!--  <bean id="multipartResolver"-->
+<!--    class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+<!--    &lt;!&ndash; 默认编码 &ndash;&gt;-->
+<!--    <property name="defaultEncoding" value="utf-8"/>-->
+<!--    &lt;!&ndash; 文件大小最大值 &ndash;&gt;-->
+<!--    <property name="maxUploadSize" value="10485760000"/>-->
+<!--    &lt;!&ndash; 内存中的最大值 &ndash;&gt;-->
+<!--    <property name="maxInMemorySize" value="40960"/>-->
+<!--  </bean>-->
+  <!--
+  //servlet-3.0
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+  -->
+
+  <!--配置统一异常处理器-->
+  <!--<bean
+    class="org.spring.demo.controller.vulnercontroller.validate.exception.MyValidatorExceptionResolver"></bean>-->
+</beans>                

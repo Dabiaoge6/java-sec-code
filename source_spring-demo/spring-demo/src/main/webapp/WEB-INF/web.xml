@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  version="2.4"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee   http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  <display-name>spring-demo</display-name>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath*:/spring-mybatis.xml,
+      classpath*:/spring.xml,
+      classpath*:/spring-security.xml
+    </param-value>
+  </context-param>
+
+  <!--<filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    <init-param>
+      <param-name>contextAttribute</param-name>
+      <param-value>org.springframework.web.servlet.FrameworkServlet.CONTEXT.SpringMVC</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>-->
+
+  <!-- 编码过滤器 -->
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>-->
+
+<!-- 响应头过滤器-->
+  <filter>
+    <filter-name>CustomEncodingFilter</filter-name>
+    <filter-class>org.spring.demo.filter.CustomEncodingFilter</filter-class>
+    <init-param>
+      <param-name>CustomEncodingFilter</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>CustomEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>-->
+
+  <!-- <filter>
+    <filter-name>loginFilter</filter-name>
+    <filter-class>org.spring.demo.login.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>loginFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping> -->
+
+  <!--自定义CsrfToken 过滤器 -->
+  <!--<filter>
+    <filter-name>CsrfTokenFilter</filter-name>
+    <filter-class>org.spring.demo.controller.vulnerFix.csrf.CsrfTokenFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CsrfTokenFilter</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>-->
+
+  <!--<filter>
+    <filter-name>requestFilter</filter-name>
+    <filter-class>org.spring.demo.customFilter.RequestFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>requestFilter</filter-name>
+    <url-pattern>/registerTest.do</url-pattern>
+  </filter-mapping>-->
+
+  <!--<filter-mapping>
+    <filter-name>CsrfTokenFilter</filter-name>
+    <url-pattern>*.jsp</url-pattern>
+  </filter-mapping>-->
+  <!--<filter-mapping>
+    <filter-name>CsrfTokenFilter</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>CsrfTokenFilter</filter-name>
+    <url-pattern>/csrf/csrftoken.jsp</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>CsrfTokenFilter</filter-name>
+    <url-pattern>/cmdInjection/cmdInjection2.do</url-pattern>
+  </filter-mapping>-->
+
+  <!-- Spring监听器 -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <!-- 防止Spring内存溢出监听器 -->
+  <listener>
+    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+  </listener>
+
+  <!-- enable web project directory listing -->
+  <!--tomcat容器directory list配置-->
+<!--  <servlet>-->
+<!--    <servlet-name>DefaultServletOverride</servlet-name>-->
+<!--    <servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>-->
+<!--    <init-param>-->
+<!--      <param-name>debug</param-name>-->
+<!--      <param-value>0</param-value>-->
+<!--    </init-param>-->
+<!--    <init-param>-->
+<!--      <param-name>listings</param-name>-->
+<!--      <param-value>true</param-value>-->
+<!--    </init-param>-->
+<!--    <load-on-startup>1</load-on-startup>-->
+<!--  </servlet>-->
+<!--  <servlet-mapping>-->
+<!--    <servlet-name>DefaultServletOverride</servlet-name>-->
+<!--    <url-pattern>/</url-pattern>-->
+<!--  </servlet-mapping>-->
+
+  <!-- Spring MVC servlet -->
+  <servlet>
+    <servlet-name>SpringMVC</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring-mvc.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+    <!-- <async-supported>true</async-supported> -->
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SpringMVC</servlet-name>
+    <!-- 此处可以可以配置成*.do，对应struts的后缀习惯 -->
+    <!--<url-pattern>*.do</url-pattern>-->
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <!-- Spring MVC servlet -->
+  <servlet>
+    <servlet-name>h2</servlet-name>
+    <servlet-class>org.h2.server.web.WebServlet</servlet-class>
+    <init-param>
+      <param-name>allowOthers</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>trace</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+          <param-name>listings</param-name>
+          <param-value>true</param-value>
+        </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>h2</servlet-name>
+    <url-pattern>/console/*</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>vul.jsp</welcome-file>
+  </welcome-file-list>
+
+  <context-param>
+    <description>Spring Expression Language Support</description>
+    <param-name>springJspExpressionSupport</param-name>
+    <param-value>true</param-value>
+  </context-param>
+
+<!--  <session-config>-->
+<!--    <session-timeout>150</session-timeout>-->
+<!--  </session-config>-->
+
+  <!-- <security-constraint>
+      <web-resource-collection>
+          <web-resource-name>securedapp</web-resource-name>
+          <url-pattern>/*</url-pattern>
+          <http-method>OPTIONS</http-method>
+      </web-resource-collection>
+      <user-data-constraint>
+          <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+      </user-data-constraint>
+  </security-constraint> -->
+
+  <!--添加http认证-->
+  <!--unsafe authentication protocol-->
+<!--  <security-constraint>-->
+<!--    <web-resource-collection>-->
+<!--      <web-resource-name>Restricted Area</web-resource-name>-->
+<!--      <url-pattern>/unsafeAuthenticate/authenticate.jsp</url-pattern>-->
+<!--      <http-method>GET</http-method>-->
+<!--    </web-resource-collection>-->
+<!--    <auth-constraint>-->
+<!--      <role-name>tomcat</role-name>-->
+<!--      <role-name>role1</role-name>-->
+<!--    </auth-constraint>-->
+<!--  </security-constraint>-->
+
+  <!-- 验证方式 其他容器存在不兼容，需注释-->
+  <login-config>
+    <auth-method>BASIC</auth-method> <!-- BASIC方式验证-->
+    <!--<auth-method>DIGEST</auth-method>--> <!-- DIGEST方式验证 -->
+    <realm-name>Authenticate</realm-name> <!-- 验证时标题 -->
+  </login-config>
+
+  <!--<error-page>
+    <error-code>500</error-code>
+    <location>/error.html</location>
+  </error-page>-->
+
+  <!--禁用url重写-->
+</web-app>

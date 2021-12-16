@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<body>
+<h1 align="center">Demo</h1>
+<div align="center">
+    <a th:href="@{/logic/home/hello.do}">HelloWorld</a>
+    <a th:href="@{/logic/home/toLogin.do}">login</a>
+    <a th:href="@{/logic/home/toRegister.do}">register</a>
+</div>
+</body>
+</html>

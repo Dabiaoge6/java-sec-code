@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>ERROR</title>
+</head>
+<body>
+<div align="center">
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+<div align="center">
+    <h1>ERROR</h1>
+</div>
+<div align="center" style="color: deepskyblue">
+    <a th:href="@{/}"></a>
+</div>
+</body>
+</html>

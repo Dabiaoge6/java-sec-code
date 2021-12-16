@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.dao.demo.dao.UserDao">
+	<resultMap id="UserList" type="org.dao.demo.bean.User">
+		<id column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="user_name" property="name" jdbcType="VARCHAR"/>
+		<result column="password" property="pwd" jdbcType="VARCHAR"/>
+		<result column="tel" property="tel" jdbcType="VARCHAR"/>
+		<result column="role" property="role" jdbcType="VARCHAR"/>
+		<result column="age" property="age" jdbcType="INTEGER"/>
+	</resultMap>
+
+	<insert id="insertByUser" parameterType="org.dao.demo.bean.User">
+			INSERT INTO user_t VALUES(#{id},#{name},#{pwd},#{tel},#{role},#{age});
+	</insert>
+
+	<insert id="insert" parameterType="String" statementType="PREPARED">
+			INSERT INTO user_t (id,user_name,password,age) VALUES(#{id},#{name},#{password},'20');
+	</insert>
+	
+	<insert id="save" parameterType="org.dao.demo.bean.User">
+		INSERT INTO user_t (id, user_name, password, age, tel, role)
+		VALUES(#{id},#{name},#{pwd},#{age},#{tel},#{role});
+	</insert>
+
+	<update id="updatePwd" parameterType="String">
+		UPDATE user_t u SET
+		u.`password`= #{param2} WHERE u.user_name= '${param1}' and
+		u.`password`= #{param3};
+	</update>
+
+	<delete id="delete" parameterType="String">
+		DELETE FROM user_t WHERE user_name = #{param1};
+	</delete>
+
+	<select id="selectId" parameterType="String" resultType="String">
+		SELECT u.id FROM user_t u WHERE u.user_name = #{name};
+	</select>
+
+	<select id="fuzzyQueryId" parameterType="String" resultType="String">
+		SELECT
+		u.id FROM user_t u WHERE u.user_name like concat('%', #{param1},'%') ;
+	</select>
+
+	<select id="fuzzyQueryIdPre" parameterType="String" resultType="String" statementType="PREPARED">
+		SELECT
+		u.id FROM user_t u WHERE u.user_name like concat('%', #{param1},'%') ;
+	</select>
+
+	<select id="selectName" resultType="String">
+		SELECT u.user_name FROM
+		user_t u;
+	</select>
+
+	<select id="login" parameterType="String" resultType="String">
+		SELECT
+		u.id FROM user_t u WHERE u.user_name = #{param1} and u.`password` = #{param2};
+	</select>
+
+	<select id="findUser" parameterType="String" resultType="org.dao.demo.bean.User">
+		SELECT
+			u.id, u.user_name AS name, u.password AS pwd, u.age FROM user_t u WHERE u.user_name = ${param1} and u.`password` = ${param2};
+	</select>
+
+
+	<select id="findUserByName" parameterType="String" resultType="org.dao.demo.bean.User">
+		SELECT
+			u.id, u.user_name AS name, u.password AS pwd, u.age, u.role FROM user_t u WHERE u.user_name = #{param1};
+	</select>
+</mapper>

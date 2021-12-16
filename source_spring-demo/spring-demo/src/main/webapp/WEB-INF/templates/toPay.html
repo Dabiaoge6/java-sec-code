@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>To Pay</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/vercode.css}">
+</head>
+<body>
+<h1>User Pay</h1>
+<div>
+
+    <form id="payform" method="post">
+        <div><label>账号：<input name="account" id="account" placeholder="请输入账户信息"/></label></div>
+        <div><label><input type="text" name="verification" id="verification" class="form-control" placeholder="请输入验证码">
+            <img id="imgVerify" src="" onclick="getVerify();"
+                 alt="点击更换验证码"/><a href="#" onclick="getVerify();" rel="nofollow">看不清，换一张</a></label></div>
+        <input id="sub-btn" type="submit"  value="提   交"/><!--onclick="checkLogin()"-->
+    </form>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/vercode.js}" ></script>
+
+<script type="text/javascript">
+
+var curWwwPath=window.document.location.href;
+var pathName=window.document.location.pathname;
+var pos=curWwwPath.indexOf(pathName);
+var localhostPaht=curWwwPath.substring(0,pos);
+var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+var path = localhostPaht + projectName
+
+	$('#sub-btn').click(function() {
+	//向后台发送处理数据
+    $.ajax({
+        type: "POST", //用POST方式传输
+        dataType: "json", //数据格式:JSON
+        url: path + '/pay', //目标地址
+        data: $('#payform').serialize(),
+        async: false,
+        success: function (msg){
+        	if(msg.message == "支付成功") {
+        		alert(msg.message);
+        		window.location.href = document.referrer;
+        	} else {
+        		alert(msg.message);
+        	}
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+        	alert('用户支付请求失败！');
+        }
+    });
+	return false;
+	});
+
+
+
+    $(document.body).ready(function () {
+        var curWwwPath=window.document.location.href;
+        var pathName=window.document.location.pathname;
+        var pos=curWwwPath.indexOf(pathName);
+        var localhostPaht=curWwwPath.substring(0,pos);
+        var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+        var path = localhostPaht + projectName
+        // alert(localhostPaht + projectName);
+        var src1 = document.getElementById('imgVerify');
+        // src1.src = "../getNumberVerifyCode.do?" + Math.random();
+        src1.src = path + "/getNumberVerifyCode.do?" + Math.random();
+        $("#imgVerify").attr("src", path + "/getNumberVerifyCode.do?" + Math.random());
+    });
+
+    //获取验证码
+    function getVerify() {
+        var curWwwPath=window.document.location.href;
+        var pathName=window.document.location.pathname;
+        var pos=curWwwPath.indexOf(pathName);
+        var localhostPaht=curWwwPath.substring(0,pos);
+        var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+        var path = localhostPaht + projectName
+        // alert(localhostPaht + projectName);
+        var src1 = document.getElementById('imgVerify');
+        // src1.src = "../getNumberVerifyCode.do?" + Math.random();
+        src1.src = path + "/getNumberVerifyCode.do?" + Math.random();
+    }
+
+</script>
+
+<script type="text/javascript">
+    function checkCode() {
+        var checkCode = $("#verification").val().toLowerCase();
+        $.post("/checkCode.do", {'checkCode': checkCode}, function (result) {
+            if (result.success == "true") {
+                $("#loginform").submit();
+            } else {
+                alert(result.errorInfo);
+            }
+        }, "json");
+    }
+</script>
+<script type="text/javascript">
+    function checkLogin() {
+        var username = $("#name").val();
+        var password = $("#pwd").val();
+        $.post("/loginCheck.do", {'username': username, 'password': password},
+            function (result) {
+                if (result.success == "true") {
+                    alert(result.msg);
+                    $("#loginform").submit();
+                } else {
+                    alert(result.msg);
+                }
+            }, "json");
+    }
+</script>
+</body>
+</html>

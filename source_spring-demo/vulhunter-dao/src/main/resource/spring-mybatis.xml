@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd    
+                        http://www.springframework.org/schema/context    
+                        http://www.springframework.org/schema/context/spring-context.xsd    
+                        http://www.springframework.org/schema/mvc    
+                        http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/jdbc
+                        http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+	<!-- 自动扫描 -->
+	<context:component-scan base-package="org.dao.demo.dao" />  
+	<!-- 引入配置文件 -->  
+    <bean id="propertyConfigurer"  
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="location" value="classpath:jdbc.properties" />  
+    </bean>     
+    <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+        destroy-method="close">  
+        <property name="driverClassName" value="${driver}" />  
+        <property name="url" value="${url}" />  
+        <property name="username" value="${username}" />  
+        <property name="password" value="${password}" />  
+        &lt;!&ndash; 初始化连接大小 &ndash;&gt;
+        <property name="initialSize" value="${initialSize:10}"></property>
+        &lt;!&ndash; 连接池最大数量 &ndash;&gt;
+        <property name="maxActive" value="${maxActive:300}"></property>
+        &lt;!&ndash; 连接池最大空闲 &ndash;&gt;
+        <property name="maxIdle" value="${maxIdle:20}"></property>
+        &lt;!&ndash; 连接池最小空闲 &ndash;&gt;
+        <property name="minIdle" value="${minIdle:5}"></property>
+        &lt;!&ndash; 获取连接最大等待时间 &ndash;&gt;
+        <property name="maxWait" value="${maxWait:6000}"></property>
+    </bean>-->
+    <!--
+    org.springframework.jdbc.datasource.DriverManagerDataSource
+    p:url="jdbc:h2:~/h2db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE"
+    -->
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+          p:driverClassName="org.h2.Driver"
+          p:url="jdbc:h2:~/h2db;MODE=MYSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE"
+          p:username="sa"
+          p:password="seczone@123"/>
+
+    <!--<jdbc:embedded-database id="dataSource" type="H2">
+        <jdbc:script location="classpath*:schema.sql" encoding="UTF-8" execution="INIT"/>
+        &lt;!&ndash;    <jdbc:script location="classpath:data.sql" encoding="UTF-8"/>&ndash;&gt;
+    </jdbc:embedded-database>-->
+
+    <jdbc:initialize-database data-source="dataSource" ignore-failures="NONE">
+        <jdbc:script location="classpath*:schema.sql" encoding="UTF-8"  execution="INIT"/>
+    </jdbc:initialize-database>
+
+    <!--<jdbc:initialize-database>
+        <jdbc:script location="classpath*:schema.sql" encoding="UTF-8" execution="INIT"/>
+    </jdbc:initialize-database>-->
+
+    <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->  
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+          p:configLocation="classpath:mybatis-config.xml">  
+        <property name="dataSource" ref="dataSource" />  
+        <!-- 自动扫描mapping.xml文件 -->  
+        <property name="mapperLocations" value="classpath:mapper/*.xml"></property>  
+    </bean>  
+  
+    <!-- DAO接口所在包名，Spring会自动查找其下的类 -->  
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+        <property name="basePackage" value="org.dao.demo.dao" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>  
+    </bean>  
+  
+    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->  
+    <bean id="transactionManager"  
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
+        <property name="dataSource" ref="dataSource" />  
+    </bean>  
+  
+</beans>              
