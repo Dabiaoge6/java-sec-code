@@ -15,6 +15,8 @@ public interface UserMapper {
     @Select("select * from user where username = '${username}' and password = '${password}'")
     List<UserVo> loginByUsernameAndPass(@Param("username") String username,@Param("password") String password);
 
+    @Select("select * from user where username like '%${username}%' ")
+    List<UserVo> searchByname(@Param("username") String username);
 
 
 }
