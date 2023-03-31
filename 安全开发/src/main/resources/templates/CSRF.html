@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:include="layout :: htmlhead" th:with="title='靶场项目'">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!--头-->
+    <div th:replace="fragments/head :: header"></div>
+
+    主体区域
+    <div class="layui-body">
+        <div class="layui-container">
+            <div class="layui-row">
+                <div class="layui-col-xs9">
+
+                    <h1>请求伪造</h1>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">服务器端请求伪造</h3>
+                        </div>
+                        <div class="panel-body">
+                            你的应用或者API将未净化的用户输入存储下来了，
+                            并在后期在其他用户或者管理员的页面展示出来。 存储型XSS一
+                            般被认为是高危或严重的风险。
+                        </div>
+                    </div>
+   <h1>选择连接的系统</h1>
+    <hr>
+    <form th:action="@{/SSRF/ping}" method="post">
+        <select  th:value="${ipaddress}" id="ipaddress" name="ipaddress"   class="form-control" >
+        <option th:selected="${ipaddress}=='0'" value="0">请选择</option>
+        <option th:selected="${ipaddress}=='1'" value="10.176.129.8">IBM系统</option>
+        <option th:selected="${ipaddress}=='2'" value="10.176.129.9">财务系统</option>
+        <option th:selected="${ipaddress}=='3'" value="10.176.129.10">人力系统</option>
+        </select>
+
+        <p><input type="submit"></p>
+    </form>
+</div></div></div></div></div>
+</div>
+</body>
+</html>

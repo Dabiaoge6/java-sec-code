@@ -1,0 +1,58 @@
+<html>
+<head th:include="layout :: htmlhead" th:with="title='靶场项目'">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <!--头-->
+  <div th:replace="fragments/head :: header"></div>
+
+  主体区域
+  <div class="layui-body">
+    <div class="layui-container">
+      <div class="layui-row">
+        <div class="layui-col-xs9">
+
+          <h1>跨站脚本漏洞</h1>
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">dom型XSS</h3>
+            </div>
+            <div class="panel-body">
+              <h5>漏洞介绍：</h5>
+              会动态的将攻击者可控的内容加入页面的
+              JavaScript框架、单页面程序或API存在这种类型的漏洞。理想的
+              来说，你应该避免将攻击者可控的数据发送给不安全的JavaScript
+              API。
+              <br>
+              <h5>案例：</h5>这里的您可以在浏览器上直接输入 HTML标签语言进行测试
+              <br>
+              <h5>参数变量：</h5> 此页面不经过后台；
+              <h5>结果说明：</h5>当前页面可显示XSS效果
+            </div>
+          </div>
+          <div id="box"></div>
+          <span id="span">小明：</span>
+          <input type="text" id="text" th:value="${a}">
+          <input id="Btn" type="button" onclick="shuru()" value="发送消息"/>
+
+        </div></div></div></div></div>
+<script>
+  function shuru(){
+    var oBox=document.getElementById("box");
+    var oSpan=document.getElementById("span");
+    var oText=document.getElementById("text");
+    var oBtn=document.getElementById("Btn");
+    oBtn.onclick = function(){
+      oBox.innerHTML = oBox.innerHTML + oSpan.innerHTML + oText.value + "<br/>";
+      oText.value=""
+    };
+  }
+</script>
+
+
+</body>
+</html>
+
+
+
+

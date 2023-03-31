@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!--head部分-->
+<head th:include="layout :: htmlhead" th:with="title='靶场项目'">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!--头-->
+    <div th:replace="fragments/head :: header"></div>
+
+    主体区域
+    <div class="layui-body">
+        <div class="layui-container">
+            <div class="layui-row">
+                <div class="layui-col-xs9">
+
+                    <h1>注入漏洞</h1>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">SSTI模版引擎注入漏洞</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h5>漏洞介绍：</h5>
+                            SSTI即(server-side template injection)服务器模板,平时我们常用的有sql注入，xss注入，xml注入和命令注入等等。大家应该都知道sql注入的原理以及方式，而模板注入的原理也很类似都是通过输入一些指令在后端处理进行了语句的拼接然后执行。模板注入不同的是它是针对python、php、java、nodejs、javascript或是ruby的网站处理框架。
+ <br>
+                            <h5>案例：</h5>输入框模执行注入命令,MAC系统可尝试输入#set($e="e");$e.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec("open -a Calculator")
+                            <br>
+                            <h5>参数变量：</h5> "template"
+                            <h5>结果说明：</h5>看是否实现注入效果
+                        </div>
+                    </div>
+
+
+                </div>
+                <form class="bs-example bs-example-form" role="form" th:action="@{/velocity}" method="get">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="template" name="template">
+                                <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">执行!</button>
+                    </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+
+    $(function shuru(){
+        var text=document.getElementById("text2");
+        console.log("text ---"+text.innerText)
+        $("#viewre").html(text.innerText)
+    })
+</script>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='靶场项目'">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <!--head部分-->
+
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!--头-->
+    <div th:replace="fragments/head :: header"></div>
+
+    主体区域
+    <div class="layui-body">
+        <div class="layui-container">
+            <div class="layui-row">
+                <div class="layui-col-xs9">
+                    <h1>注入漏洞</h1>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">http头部注入</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h5>漏洞说明：</h5>
+                           一般在通过获取http头部的信息用于数据的分析，通过头部可以向数据库发送查询信息，所以构造恶意的语句结构就可以向数据库进行信息查询。
+                            <h5>案例说明：</h5>案例背景为后台根据user-Agent信息和ip地址查看是否有被记录。我们在前端可以更改我们的ip和User-Agent信息，模拟http协议的修改。
+                            <h5>参数变量：</h5> "agent" 与 "ip"
+                            <h5>结果说明：</h5>可在页面下方查看查询出来信息。
+                        </div>
+                    </div>
+
+
+                    <form class="form-horizontal" role="form" th:action="@{/http2}" method="get">
+                        <div class="form-group">
+                            <label for="firstname" class="col-sm-2 control-label">Useragent</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="firstname" name="agent" placeholder="请输入想要修改的UserAgent" th:value="${agent}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname" class="col-sm-2 control-label">ipAdress</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="lastname" name="ip" placeholder="请输入想要修改的ip" th:value="${ip}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">再次执行该接口</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div id="view">
+                        <p th:text="${message}" id="span" ></p>
+                    </div>
+
+
+
+                </div></div></div></div></div>
+</body>
+<script>
+    $(function view(){
+            var val =   document.getElementById("span").innerText
+
+            $("#view").html(val)
+        }
+
+    )
+</script>
+</html>
+
+
+

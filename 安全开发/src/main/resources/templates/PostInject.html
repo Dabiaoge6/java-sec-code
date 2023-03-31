@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--head部分-->
+<head th:include="layout :: htmlhead" th:with="title='靶场项目'">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!--头-->
+    <div th:replace="fragments/head :: header"></div>
+
+    主体区域
+    <div class="layui-body">
+        <div class="layui-container">
+            <div class="layui-row">
+                <div class="layui-col-xs9">
+
+                    <h1>注入漏洞</h1>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Post类型注入</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h5>漏洞说明：</h5>
+                            POST 起初是用来向服务器传递数据的，常用在与 HTML 的表单里，比如管理员的登录后台，管理员在表单里填好了账号密码之后，就会被 HTML 以 POST 方法传往服务器进行数据效验。如果在这 POST 提交的过程中，数据存在注入，那么就称之为 SQL POST 注入。
+                            <h5>案例介绍：</h5>本窗口模仿登陆界面。用户可通过输入为检验的语句进行测试
+                            <h5>参数变量：</h5> "username";"password"
+                            <h5>结果说明：</h5>返回结果可显示是否注入成功。
+                        </div>
+                    </div>
+
+                    <form class="form-horizontal" role="form" th:action="@{/PostInject}" method="post">
+                        <div class="form-group">
+                            <span th:text="${message}"></span>
+                            <label for="firstname" class="col-sm-2 control-label">用户名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="firstname" name="username" placeholder="请输入用户名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname" class="col-sm-2 control-label">密码</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="lastname" name="password" placeholder="请输入密码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">登录</button>
+                            </div>
+                        </div>
+                    </form>
+                    <span th:text="${userinfo}"></span>
+
+
+                </div></div></div></div></div>
+</body>
+</html>

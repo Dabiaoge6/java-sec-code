@@ -1,31 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <title>登录</title>
-    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+<!--head部分-->
+<head th:include="layout :: htmlhead" th:with="title='靶场项目'">
 </head>
-<body>
-<form th:action="@{/login}" method="post">
-    <div>
-        <!--/*@thymesVar id="error" type=""*/-->
-        <span id="basic-addon0">&nbsp;</span>
-        <span style="font-size: 12px;color: red" th:text="${error}" aria-describedby="basic-addon0"></span>
-        <br />
-    </div>
-    <div>
-        <span id="basic-addon1">@</span>
-        <input id="user_name" name="userName" type="text" placeholder="用户名" aria-describedby="basic-addon1" />
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!--头-->
+    <div th:replace="fragments/head :: header"></div>
 
-    </div>
-    <br />
-    <div>
-        <span id="basic-addon2">@</span>
-        <input id="password" name="password" type="password" placeholder="密码" aria-describedby="basic-addon2" />
-    </div>
-    <br />
-    <button type="submit" style="width:190px;">登 录</button>
+    主体区域
+    <div class="layui-body">
+        <div class="layui-container">
+            <div class="layui-row">
+                <div class="layui-col-xs9">
+
+<h1>登录</h1>
+<hr>
+<p th:text="${msg}" style="color:#ff0000;"></p>
+<form th:action="@{/login2}" method="post">
+    <p>用户名：<input type="text" name="username"></p>
+    <p>密码：<input type="text" name="password"></p>
+    <p><input type="submit"></p>
+
 
 </form>
+
+                </div></div></div></div></div>
 </body>
 </html>

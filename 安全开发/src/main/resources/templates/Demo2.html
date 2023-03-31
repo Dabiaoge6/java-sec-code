@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bootstrap 实例 - 响应式的导航栏</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <ul id="main-nav" class="nav nav-tabs nav-stacked" style="">
+                <li class="active">
+                    <a href="#">
+                        <i class="glyphicon glyphicon-th-large"></i>
+                        首页
+                    </a>
+                </li>
+                <li>
+                    <a href="#systemSetting" class="nav-header collapsed" data-toggle="collapse">
+                        <i class="glyphicon glyphicon-cog"></i>
+                        系统管理
+                        <span class="pull-right glyphicon glyphicon-chevron-down"></span>
+                    </a>
+                    <ul id="systemSetting" class="nav nav-list collapse secondmenu" style="height: 0px;">
+                        <li><a href="mytask"><i class="glyphicon glyphicon-user"></i>用户管理</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-th-list"></i>菜单管理</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-asterisk"></i>角色管理</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-edit"></i>修改密码</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-eye-open"></i>日志查看</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="./plans.html">
+                        <i class="glyphicon glyphicon-credit-card"></i>
+                        物料管理
+                    </a>
+                </li>
+                <li>
+                    <a href="./grid.html">
+                        <i class="glyphicon glyphicon-globe"></i>
+                        分发配置
+                        <span class="label label-warning pull-right">5</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./charts.html">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                        图表统计
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-fire"></i>
+                        关于系统
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-10">
+            otstrap3.0中它有这个能够缩放的导航栏,具体使用状况能够去它官网查看文档。 此方...
+            www.javashuo.com/article/p-mrp...
+            
+            百度快照
+            导航栏 - Bootstrap中文网
+            Bootstrap是Twitter推出的一个用于前端开发的开源工具包。它由Twitter的设计师Mark Otto和Jacob Thornton合作开发,是一个CSS/HTML框架。目前,Bootstrap最新版本为3.0 。Boots...
+            wenda.bootcss.com/topic/导航栏
+            
+            百度快照
+            左侧导航条+中间显示内容+右侧菜单配置,Bootstrap+AdminLT...
+
+            2018年8月23日 1、最近做个导航页面,找了一大堆UI,最终选了AdminLTE,这个UI也是以bootstrap为基础,简单实用,中间内容用jquery的load加载,简单暴力,非常适合快速开发。 2、效果图如下: 3、页面代码i...
+            博客园
+            
+            百度快照
+            bootstrap 中如何将左侧或者右侧导航栏固定 - OSCHINA - ...
+
+            2020年2月16日 整个页面布局如下: 我想实现如下目标: 1、当整个页面在最顶端时,左侧导航栏的位置如上图 2、当页面向下滑动,左侧导航内容显示最后一块内容时,左侧某个内容块悬停与左侧顶部 3、当页...
+            OSCHINA
+            
+            百度快照
+            为您推荐：bootstrap左侧导航栏为什么大公司很少用vueelectron左菜单右内容
+            bootstrap字体样式bootstrap表格垂直滚动条bootstrap滚动监听
+            相关搜索
+            bootstrap浮动导航栏	bootstrap折叠导航栏
+            bootstrap移动端导航栏	bootstrap透明导航栏
+            bootstrap 两行导航栏	bootstrap做网页
+            bootstrap 导航栏隐藏	如何用bootstrap写网页
+            bootstrap 导航栏	react导航栏
+            1
+            2
+            3
+            4
+            5
+            6
+            7
+            8
+            9
+            10
+            下一页 >
+            otstrap3.0中它有这个能够缩放的导航栏,具体使用状况能够去它官网查看文档。 此方...
+            www.javashuo.com/article/p-mrp...
+            
+            百度快照
+            导航栏 - Bootstrap中文网
+            Bootstrap是Twitter推出的一个用于前端开发的开源工具包。它由Twitter的设计师Mark Otto和Jacob Thornton合作开发,是一个CSS/HTML框架。目前,Bootstrap最新版本为3.0 。Boots...
+            wenda.bootcss.com/topic/导航栏
+            
+            百度快照
+            左侧导航条+中间显示内容+右侧菜单配置,Bootstrap+AdminLT...
+
+            2018年8月23日 1、最近做个导航页面,找了一大堆UI,最终选了AdminLTE,这个UI也是以bootstrap为基础,简单实用,中间内容用jquery的load加载,简单暴力,非常适合快速开发。 2、效果图如下: 3、页面代码i...
+            博客园
+            
+            百度快照
+            bootstrap 中如何将左侧或者右侧导航栏固定 - OSCHINA - ...
+
+            2020年2月16日 整个页面布局如下: 我想实现如下目标: 1、当整个页面在最顶端时,左侧导航栏的位置如上图 2、当页面向下滑动,左侧导航内容显示最后一块内容时,左侧某个内容块悬停与左侧顶部 3、当页...
+            OSCHINA
+            
+            百度快照
+            为您推荐：bootstrap左侧导航栏为什么大公司很少用vueelectron左菜单右内容
+            bootstrap字体样式bootstrap表格垂直滚动条bootstrap滚动监听
+            相关搜索
+            bootstrap浮动导航栏	bootstrap折叠导航栏
+            bootstrap移动端导航栏	bootstrap透明导航栏
+            bootstrap 两行导航栏	bootstrap做网页
+            bootstrap 导航栏隐藏	如何用bootstrap写网页
+            bootstrap 导航栏	react导航栏
+            1
+            2
+            3
+            4
+            5
+            6
+            7
+            8
+            9
+            10
+            下一页 >
+
+            otstrap3.0中它有这个能够缩放的导航栏,具体使用状况能够去它官网查看文档。 此方...
+            www.javashuo.com/article/p-mrp...
+            
+            百度快照
+            导航栏 - Bootstrap中文网
+            Bootstrap是Twitter推出的一个用于前端开发的开源工具包。它由Twitter的设计师Mark Otto和Jacob Thornton合作开发,是一个CSS/HTML框架。目前,Bootstrap最新版本为3.0 。Boots...
+            wenda.bootcss.com/topic/导航栏
+            
+            百度快照
+            左侧导航条+中间显示内容+右侧菜单配置,Bootstrap+AdminLT...
+
+            2018年8月23日 1、最近做个导航页面,找了一大堆UI,最终选了AdminLTE,这个UI也是以bootstrap为基础,简单实用,中间内容用jquery的load加载,简单暴力,非常适合快速开发。 2、效果图如下: 3、页面代码i...
+            博客园
+            
+            百度快照
+            bootstrap 中如何将左侧或者右侧导航栏固定 - OSCHINA - ...
+
+            2020年2月16日 整个页面布局如下: 我想实现如下目标: 1、当整个页面在最顶端时,左侧导航栏的位置如上图 2、当页面向下滑动,左侧导航内容显示最后一块内容时,左侧某个内容块悬停与左侧顶部 3、当页...
+            OSCHINA
+            
+            百度快照
+            为您推荐：bootstrap左侧导航栏为什么大公司很少用vueelectron左菜单右内容
+            bootstrap字体样式bootstrap表格垂直滚动条bootstrap滚动监听
+            相关搜索
+            bootstrap浮动导航栏	bootstrap折叠导航栏
+            bootstrap移动端导航栏	bootstrap透明导航栏
+            bootstrap 两行导航栏	bootstrap做网页
+            bootstrap 导航栏隐藏	如何用bootstrap写网页
+            bootstrap 导航栏	react导航栏
+            1
+            2
+            3
+            4
+            5
+            6
+            7
+            8
+            9
+            10
+            下一页 >
+
+            otstrap3.0中它有这个能够缩放的导航栏,具体使用状况能够去它官网查看文档。 此方...
+            www.javashuo.com/article/p-mrp...
+            
+            百度快照
+            导航栏 - Bootstrap中文网
+            Bootstrap是Twitter推出的一个用于前端开发的开源工具包。它由Twitter的设计师Mark Otto和Jacob Thornton合作开发,是一个CSS/HTML框架。目前,Bootstrap最新版本为3.0 。Boots...
+            wenda.bootcss.com/topic/导航栏
+            
+            百度快照
+            左侧导航条+中间显示内容+右侧菜单配置,Bootstrap+AdminLT...
+
+            2018年8月23日 1、最近做个导航页面,找了一大堆UI,最终选了AdminLTE,这个UI也是以bootstrap为基础,简单实用,中间内容用jquery的load加载,简单暴力,非常适合快速开发。 2、效果图如下: 3、页面代码i...
+            博客园
+            
+            百度快照
+            bootstrap 中如何将左侧或者右侧导航栏固定 - OSCHINA - ...
+
+            2020年2月16日 整个页面布局如下: 我想实现如下目标: 1、当整个页面在最顶端时,左侧导航栏的位置如上图 2、当页面向下滑动,左侧导航内容显示最后一块内容时,左侧某个内容块悬停与左侧顶部 3、当页...
+            OSCHINA
+            
+            百度快照
+            为您推荐：bootstrap左侧导航栏为什么大公司很少用vueelectron左菜单右内容
+            bootstrap字体样式bootstrap表格垂直滚动条bootstrap滚动监听
+            相关搜索
+            bootstrap浮动导航栏	bootstrap折叠导航栏
+            bootstrap移动端导航栏	bootstrap透明导航栏
+            bootstrap 两行导航栏	bootstrap做网页
+            bootstrap 导航栏隐藏	如何用bootstrap写网页
+            bootstrap 导航栏	react导航栏
+            1
+            2
+            3
+            4
+            5
+            6
+            7
+            8
+            9
+            10
+            下一页 >
+
+            otstrap3.0中它有这个能够缩放的导航栏,具体使用状况能够去它官网查看文档。 此方...
+            www.javashuo.com/article/p-mrp...
+            
+            百度快照
+            导航栏 - Bootstrap中文网
+            Bootstrap是Twitter推出的一个用于前端开发的开源工具包。它由Twitter的设计师Mark Otto和Jacob Thornton合作开发,是一个CSS/HTML框架。目前,Bootstrap最新版本为3.0 。Boots...
+            wenda.bootcss.com/topic/导航栏
+            
+            百度快照
+            左侧导航条+中间显示内容+右侧菜单配置,Bootstrap+AdminLT...
+
+            2018年8月23日 1、最近做个导航页面,找了一大堆UI,最终选了AdminLTE,这个UI也是以bootstrap为基础,简单实用,中间内容用jquery的load加载,简单暴力,非常适合快速开发。 2、效果图如下: 3、页面代码i...
+            博客园
+            
+            百度快照
+            bootstrap 中如何将左侧或者右侧导航栏固定 - OSCHINA - ...
+
+            2020年2月16日 整个页面布局如下: 我想实现如下目标: 1、当整个页面在最顶端时,左侧导航栏的位置如上图 2、当页面向下滑动,左侧导航内容显示最后一块内容时,左侧某个内容块悬停与左侧顶部 3、当页...
+            OSCHINA
+            
+            百度快照
+            为您推荐：bootstrap左侧导航栏为什么大公司很少用vueelectron左菜单右内容
+            bootstrap字体样式bootstrap表格垂直滚动条bootstrap滚动监听
+            相关搜索
+            bootstrap浮动导航栏	bootstrap折叠导航栏
+            bootstrap移动端导航栏	bootstrap透明导航栏
+            bootstrap 两行导航栏	bootstrap做网页
+            bootstrap 导航栏隐藏	如何用bootstrap写网页
+            bootstrap 导航栏	react导航栏
+            1
+            2
+            3
+            4
+            5
+            6
+            7
+            8
+            9
+            10
+            下一页 >
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--<nav class="navbar navbar-default" role="navigation">-->
+<!--    <div class="container-fluid">-->
+<!--        <div class="navbar-header">-->
+<!--            <button type="button" class="navbar-toggle" data-toggle="collapse"-->
+<!--                    data-target="#example-navbar-collapse">-->
+<!--                <span class="sr-only">切换导航</span>-->
+<!--                <span class="icon-bar"></span>-->
+<!--                <span class="icon-bar"></span>-->
+<!--                <span class="icon-bar"></span>-->
+<!--            </button>-->
+<!--            <a class="navbar-brand" href="#">靶场分类</a>-->
+<!--        </div>-->
+<!--        <div class="collapse navbar-collapse" id="example-navbar-collapse">-->
+<!--            <ul class="nav navbar-nav">-->
+<!--                <li class="active"><a href="#">SSRF</a></li>-->
+<!--                <li><a href="#">CSRF</a></li>-->
+<!--                <li><a href="#">XXE</a></li>-->
+<!--                <li class="dropdown">-->
+<!--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
+<!--                        注入类型 <b class="caret"></b>-->
+<!--                    </a>-->
+<!--                    <ul class="dropdown-menu">-->
+<!--                        <li><a href="#">HTTP注入</a></li>-->
+<!--                        <li class="divider"></li>-->
+<!--                        <li><a href="#">Cookie注入</a></li>-->
+<!--                        <li class="divider"></li>-->
+<!--                        <li><a href="#">sql</a></li>-->
+<!--                    </ul>-->
+<!--                </li>-->
+
+<!--                <li class="dropdown">-->
+<!--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
+<!--                        xss类型 <b class="caret"></b>-->
+<!--                    </a>-->
+<!--                    <ul class="dropdown-menu">-->
+<!--                        <li><a href="#">z</a></li>-->
+<!--                        <li class="divider"></li>-->
+<!--                        <li><a href="#">Cookie注入</a></li>-->
+<!--                        <li class="divider"></li>-->
+<!--                        <li><a href="#">sql</a></li>-->
+<!--                    </ul>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+
+</body>
+</html>

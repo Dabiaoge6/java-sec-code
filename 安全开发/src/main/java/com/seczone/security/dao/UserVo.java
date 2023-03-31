@@ -12,6 +12,15 @@ public class UserVo {
     private Integer age;
 
     private Integer sex;
+    private String perms;
+
+    public String getPerms() {
+        return perms;
+    }
+
+    public void setPerms(String perms) {
+        this.perms = perms;
+    }
 
     public Long getUid() {
         return uid;

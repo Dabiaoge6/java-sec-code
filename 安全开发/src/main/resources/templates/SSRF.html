@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:include="layout :: htmlhead" th:with="title='靶场项目'">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!--头-->
+    <div th:replace="fragments/head :: header"></div>
+
+    主体区域
+    <div class="layui-body">
+        <div class="layui-container">
+            <div class="layui-row">
+                <div class="layui-col-xs9">
+
+                    <h1>请求伪造</h1>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">服务器端请求伪造</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h5>漏洞介绍：</h5>
+                            SSRF 形成的原因大都是由于服务端提供了从其他服务器应用获取数据的功能且没有对目标地址做过滤与限制。
+                            比如从指定URL地址获取网页文本内容，加载指定地址的图片，下载等等。利用的是服务端的请求伪造。
+                            ssrf是利用存在缺陷的web应用作为代理攻击远程和本地的服务器。
+                            <br>
+                            <h5>案例：</h5> 可利用输入框探测到内网其他的服务，达到内网嗅探的目的。
+                            <br>
+                            <h5>参数变量：</h5> "ipaddress"
+                            <h5>结果说明：</h5> 连接系统返回为"连接成功"时，代表该内网中服务被探测成功；返回"timeout"，代表无法访问该内网ip。
+                        </div>
+                    </div>
+                    <h1>选择连接的系统</h1>
+                    <hr>
+<!--                    <form th:action="@{/SSRF/ping}" method="post">-->
+<!--                        <select  th:value="${ipaddress}" id="ipaddress" name="ipaddress"   class="form-control" >-->
+<!--                            <option th:selected="${ipaddress}=='0'" value="0">请选择</option>-->
+<!--                            <option th:selected="${ipaddress}=='1'" value="10.176.129.8">IBM系统</option>-->
+<!--                            <option th:selected="${ipaddress}=='2'" value="10.176.129.9">财务系统</option>-->
+<!--                            <option th:selected="${ipaddress}=='3'" value="10.176.129.10">人力系统</option>-->
+<!--                        </select>-->
+
+<!--    -->
+<!--                        <input type="submit" value="查询"></p>-->
+
+
+<!--                    </form>-->
+
+
+<!--                        <div style="padding: 100px 100px 10px;">-->
+                    <div>
+                            <form class="bs-example bs-example-form" role="form" th:action="@{/SSRF/ping}" method="post">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="ipaddress" name="ipaddress">
+                                            <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Go!</button>
+                    </span>
+                                        </div><!-- /input-group -->
+                                    </div><!-- /.col-lg-6 -->
+                                </div><!-- /.row -->
+                            </form>
+                        </div>
+                    <p th:text="${message}" id="span" ></p>
+                </div></div></div></div></div>
+</div>
+</body>
+<script></script>
+
+
+</html>

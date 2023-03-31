@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='靶场项目'">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <!--head部分-->
+
+    </head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!--头-->
+    <div th:replace="fragments/head :: header"></div>
+
+    主体区域
+    <div class="layui-body">
+        <div class="layui-container">
+            <div class="layui-row">
+                <div class="layui-col-xs9">
+                    <h1>注入漏洞</h1>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">cookie注入</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h5>漏洞说明：</h5>
+                            Cookie注入简单来说就是利用Cookie而发起的注入攻击。从本质上来讲，Cookie注入与传统的SQL注入并无不同，两者都是针对数据库的注入，只是表现形式上略有不同                            <br>本例子中，可以利用BP拦截下来请求，然后构建包含POC的网页，诱导被攻击者点击。
+                            <br>就是对Cookie中保存的数据放在数据库进行插叙，达到注入效果。
+                            <h5>参数变量：</h5> "inputcookie"
+                            <h5>结果说明：</h5>返回结果可显示是否注入成功。
+
+                        </div>
+                    </div>
+
+
+
+
+                    <form class="bs-example bs-example-form" role="form" th:action="@{/checkCookie}" method="post">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="inputcookie" name="inputcookie">
+                                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">查询!</button>
+                    </span>
+                                </div><!-- /input-group -->
+                            </div><!-- /.col-lg-6 -->
+                        </div><!-- /.row -->
+                    </form>
+                    <div id="view">
+                    <p th:text="${information}" id="span" hidden></p>
+                    </div>
+
+                </div></div></div></div></div>
+</body>
+<script>
+    $(function view(){
+     var val =   document.getElementById("span").innerText
+        $("#view").html(val)
+        }
+
+    )
+</script>
+</html>
+
+
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!--head部分-->
+<head th:include="layout :: htmlhead" th:with="title='靶场项目'">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!--头-->
+    <div th:replace="fragments/head :: header"></div>
+
+    主体区域
+    <div class="layui-body">
+        <div class="layui-container">
+            <div class="layui-row">
+                <div class="layui-col-xs9">
+
+                    <h1>注入漏洞</h1>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">OS注入漏洞</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h5>漏洞介绍：</h5>
+                            程序员使用脚本语言开发应用程序过程中，脚本开发十分快速、简介、方便，但是也伴随着一些问题。比如说速度慢，或者无法接触系统底层，如果我们开发的应用，特别是企业级的一些应用需要调用一些外部程序（系统命令或者exe等可执行文件）。当应用需要调用一些外部程序时就会用到一些系统命令的函数。                            <br>
+                            <h5>案例：</h5>输入框模仿行一些 Shell 命令或其他外部应用程序命令的输入
+                            <br>
+                            <h5>参数变量：</h5> "command"
+                            <h5>结果说明：</h5>看是否调用外部应用程序
+                        </div>
+                    </div>
+
+
+                </div>
+                <form class="bs-example bs-example-form" role="form" th:action="@{/otherInject/osInject}" method="Post">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="command" name="command">
+                                <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">执行!</button>
+                    </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+
+    $(function shuru(){
+        var text=document.getElementById("text2");
+        console.log("text ---"+text.innerText)
+        $("#viewre").html(text.innerText)
+    })
+</script>
+</html>

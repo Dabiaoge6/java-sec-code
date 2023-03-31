@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!--head部分-->
+<head th:include="layout :: htmlhead" th:with="title='靶场项目'">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!--头-->
+    <div th:replace="fragments/head :: header"></div>
+
+    主体区域
+    <div class="layui-body">
+        <div class="layui-container">
+            <div class="layui-row">
+                <div class="layui-col-xs9">
+
+                    <h1>跨站脚本漏洞</h1>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">反射型XSS</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h5>漏洞介绍：</h5>
+                            反射型XXS是一种非持久性的攻击，它指的是恶意攻击者往Web页面里插入恶意代码，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行，从而达到恶意攻击用户的目的。
+                            <br>
+                            <h5>案例：</h5>这里的您可以在浏览器上直接输入 HTML标签语言进行测试
+                            <br>
+                            <h5>参数变量：</h5> "xss"
+                            <h5>结果说明：</h5>跳转页面可显示XSS效果
+                        </div>
+                    </div>
+
+                    <p hidden id="text2" th:text="${xsspara}" style="color:#ff0000;"></p>
+                    <div id="viewre"></div>
+
+                    </div>
+                    <form class="bs-example bs-example-form" role="form" th:action="@{/xss/reflect}" method="get">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="xss" name="xss">
+                                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Go!</button>
+                    </span>
+
+                </div></div></div></div></div>
+</body>
+<script>
+
+    $(function shuru(){
+        var text=document.getElementById("text2");
+        console.log("text ---"+text.innerText)
+        $("#viewre").html(text.innerText)
+    })
+</script>
+</html>

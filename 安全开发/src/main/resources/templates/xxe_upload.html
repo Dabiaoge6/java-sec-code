@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!--head部分-->
+<head th:include="layout :: htmlhead" th:with="title='靶场项目'">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!--头-->
+    <div th:replace="fragments/head :: header"></div>
+
+    主体区域
+    <div class="layui-body">
+        <div class="layui-container">
+            <div class="layui-row">
+                <div class="layui-col-xs9">
+
+<h1>XML外部实体注入</h1>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">解析excle表格</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h5>漏洞介绍:</h5>
+                            XXE（外部实体注入）是XML注入的一种，普通的XML注入利用面比较狭窄，如果有的话也是逻辑类漏洞。XXE扩大了攻击面。
+                            当允许引用外部实体时，就可能导致任意文件读取、系统命令执行、内网端口探测、攻击内网网站等危害。
+                            <br>
+                            <h5>案例：</h5>本案例背景excel文件上传；
+                            excle表格解压生成xml文件中，可引入外部XML实体。设置好XML文件后重新打包成excel文件，点击上传excel表格，
+                            后台解析EXCEL文件时执行引入的XML外部实体。
+                        </div>
+                    </div>
+<form method="post" action="readexcel" enctype="multipart/form-data">
+   <h3>请上传excel文件</h3>
+    <input type="file" name="file"/><br>
+    <input type="submit" value="Submit">
+</form>
+                </div></div></div></div></div>
+</body>
+</html>

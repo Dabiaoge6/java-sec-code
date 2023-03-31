@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='靶场项目'">
+    <meta charset="UTF-8"/>
+    <script th:src="@{../js/jquery-3.4.1.min.js}" charset="utf-8"></script>
+    <title>userList</title>
+    <!--head部分-->
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!--头-->
+    <div th:replace="fragments/head :: header"></div>
+
+    主体区域
+    <div class="layui-body">
+        <div class="layui-container">
+            <div class="layui-row">
+                <div class="layui-col-xs9">
+
+                    <h1>跨站脚本漏洞</h1>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">存储型XSS</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h5>漏洞介绍：</h5>
+                            你的应用或者API将未净化的用户输入存储下来了，
+                            并在后期在其他用户或者管理员的页面展示出来。 存储型XSS一
+                            般被认为是高危或严重的风险。
+                            <br>
+                            <h5>案例：</h5>测试样例是模仿一个论坛，该论坛有输入评论和显示评论的功能。测试时可在评论区输入POC语句。
+                            <h5>参数变量：</h5> "comment"
+                            <h5>结果说明：</h5>提提交时，会自动刷新页面显示输入效果。
+                            <br>
+                        </div>
+                    </div>
+
+
+
+
+<div class="cc_comment__textarea" style="margin-bottom: 20px">
+        <!--和form关联    评论框主体-->
+
+        <form action="/xss/inseart" method="post" id="commentForms" role="form">
+            <div class="form-group">
+                <label for="textareaa">评论栏</label>
+                <textarea class="form-control" id="textareaa" name="comment" rows="3" placeholder="提点意见，让TA有所进步"></textarea>
+        <!--这两个input仅仅只是获取相册id和用户id   不显示-->
+                <br>
+                <br>
+                <button type="submit" class="btn btn-default">提交评论</button>
+                <br>
+                <br>
+        </form>
+    </div>
+<br/>
+
+<br/><br/>
+<div class="with:80%">
+    <div class="table-responsive" id="table2">
+    </div>
+</div>
+<!--    <button  th:onclick="'javascript:test()'">sadsad</button>-->
+<!--    <button onclick="executeGetAjaxJson()" type="button">查看评论</button>-->
+</div>
+                </div></div></div></div></div>
+</body>
+<script type="text/javascript" >
+    $(function executeGetAjaxJson() {
+        <!--  data中传递json对象  -->
+        $.ajax({
+            url: '/xss/stroagexss_interface',
+            type: 'post',
+            async: true,
+            data:'',
+            dataType: 'json',
+            success: function (data) {
+                var inf= "<table class=\"table\">"+"<caption>评论列表</caption>" +
+                    "        <thead>\n" +
+                    "        <tr>\n" +
+                    "            <th>id</th>\n" +
+                    "            <th>内容</th>\n" +
+                    "            <th>用户姓名</th>\n" +
+                    "        </tr>" +
+                    "</thead>"+
+                    "<tbody>";
+                for (var i=0;i<data.data.length;i++){
+                    var course=data.data[i];
+
+                    inf+=
+                        "<tr class=\"active\"> " +
+                        "<td >"+course.commonId+"</td> " +
+                        "<td>"+course.commentContent+"</td>" +
+                        " <td >"+course.userName+"</td>" +
+                        " </tr>";
+                }
+                inf+=+"</tbody>"
+                    +"</table>"
+                $("#table2").html(inf);//写入table中
+
+                console.log(inf);
+
+            }
+        })
+    })
+</script>
+</html>

@@ -19,7 +19,7 @@ import java.util.Iterator;
 import static org.apache.commons.lang.StringUtils.isBlank;
 
 /**
- * Desc:   poi-ooxml xxe vuln code
+ * Desc:   poi-ooxml xxe vuln code  影响范围 poi-ooxml-3.10-FINAL.jar及以下版本
  * Usage:  [Content_Type].xml  http://localhost:8080/ooxml/upload
  * Ref:    https://www.itread01.com/hkpcyyp.html
  * Fix:    Update poi-ooxml to 3.15 or above.
@@ -44,11 +44,11 @@ public class ooxmlXXE {
     @PostMapping("/readxlsx")
     @ResponseBody
     public String ooxml_xxe(MultipartFile file)throws IOException {
-        XSSFWorkbook wb = new XSSFWorkbook(file.getInputStream()); // xxe vuln
+        XSSFWorkbook wb = new XSSFWorkbook(file.getInputStream()); // xxe vuln   读取工作簿
 
-        XSSFSheet sheet = wb.getSheetAt(0);
-        XSSFRow row;
-        XSSFCell cell;
+        XSSFSheet sheet = wb.getSheetAt(0);//读取excel工作表
+        XSSFRow row;        // 行
+        XSSFCell cell;      //单元
 
         Iterator rows = sheet.rowIterator();
         String result = "";
